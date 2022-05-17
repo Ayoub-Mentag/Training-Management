@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template1">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css">
+</head>
+
+<body>
+<div layout:fragment="content1">
+    <h1>Modification d'information</h1>
+
+        <form method="get" th:action="@{saveEdit}">
+            <div hidden>
+                <label id="id">Id</label>
+                <input for="id" type="text" name="userId"  th:value="${appUser.userId}">
+                <!--                <span class="text-danger" th:errors="${pass}"></span>-->
+            </div>
+
+            <div hidden>
+                <label id="email">Email</label>
+                <input for="email" type="email" name="email"  th:value="${appUser.email}">
+                <!--                <span class="text-danger" th:errors="${pass}"></span>-->
+            </div>
+
+            <div hidden>
+                <label id="password">Password</label>
+                <input for="password" type="password" name="password"  th:value="${appUser.password}">
+                <!--                <span class="text-danger" th:errors="${pass}"></span>-->
+            </div>
+            <div hidden>
+                <label id="active">Active</label>
+                <input for="active" type="checkbox" name="active"  th:value="${appUser.active}">
+                <!--                <span class="text-danger" th:errors="${pass}"></span>-->
+            </div>
+            <div>
+                <label id="fName">Prénom</label>
+                <input for="fName" type="text" name="fName"  th:value="${appUser.getFName()}">
+<!--                <span class="text-danger" th:errors="${pass}"></span>-->
+            </div>
+            <div>
+                <label id="lName">Nom</label>
+                <input for="lName" type="text" name="lName" th:value="${appUser.getLName()}">
+<!--                <span class="text-danger" th:errors="${beneficiary.pass}"></span>-->
+            </div>
+            <div>
+                <label id="som">Numéro de SOM</label>
+                <input for="som" type="text" name="som" th:value="${appUser.som}">
+                <!--                <span class="text-danger" th:errors="${beneficiary.pass}"></span>-->
+            </div>
+            <div>
+                <label id="tel">Numéro de téléphone</label>
+                <input for="tel" type="text" name="tel" th:value="${appUser.tel}">
+                <!--                <span class="text-danger" th:errors="${beneficiary.pass}"></span>-->
+            </div>
+            <div>
+                <label id="acR">Académie Régionnale</label>
+                <input for="acR" type="text" name="acR" th:value="${appUser.acR}">
+                <!--                <span class="text-danger" th:errors="${beneficiary.pass}"></span>-->
+            </div>
+            <div>
+                <label id="eta">Etablisement</label>
+                <input for="eta" type="text" name="eta" th:value="${appUser.eta}">
+                <!--                <span class="text-danger" th:errors="${beneficiary.pass}"></span>-->
+            </div>
+
+            <div>
+                <label id="cyE">Cycle d'enseignant</label>
+                <input for="cyE" type="text" name="cyE" th:value="${appUser.cyE}">
+                <!--                <span class="text-danger" th:errors="${beneficiary.pass}"></span>-->
+            </div>
+            <div>
+                <label id="fon">Fonction</label>
+                <input for="fon" type="text" name="fon" th:value="${appUser.fon}">
+                <!--                <span class="text-danger" th:errors="${beneficiary.pass}"></span>-->
+            </div>
+            <button type="submit" class="btn btn-primary">
+                Submit
+            </button>
+        </form>
+
+</div>
+
+
+</body>
+</html>

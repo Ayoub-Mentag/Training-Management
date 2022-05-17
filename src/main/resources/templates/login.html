@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template1">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css">
+</head>
+
+<body>
+<div layout:fragment="content1">
+    <h1>Login page</h1>
+
+        <form method="get" th:action="@{login}">
+            <div>
+                <label id="email">Email</label>
+                <input type="email" name="email" class="form-control" placeholder="E-mail" required autofocus/>
+                <!--                <span class="text-danger" th:errors="${pass}"></span>-->
+            </div>
+            <div>
+                <label id="pass">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Password" required autofocus/>
+<!--                <span class="text-danger" th:errors="${beneficiary.pass}"></span>-->
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                Submit
+            </button>
+        </form>
+
+</div>
+
+
+</body>
+</html>

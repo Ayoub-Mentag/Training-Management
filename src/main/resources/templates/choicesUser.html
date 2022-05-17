@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template1">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css">
+
+</head>
+<body>
+<div layout:fragment="content1">
+    <div class="container mt-2">
+        <div class="card-header"><h3>Liste de beneficiaries</h3></div>
+    </div>
+
+    <div class="card-header">
+        <table class="table">
+            <thead>
+            <tr>
+                <td>Journée</td>
+                <td>Matin</td>
+                <td>Aprés midi</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Lundi</td>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>
+                    <input type="checkbox">
+                </td>
+            </tr>
+            <tr>
+                <td>Mardi</td>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>
+                    <input type="checkbox">
+                </td>
+            </tr>
+            <tr>
+                <td>Mercredi</td>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>
+                    <input type="checkbox">
+                </td>
+            </tr>
+            <tr>
+                <td>Jeudi</td>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>
+                    <input type="checkbox">
+                </td>
+            </tr>
+            <tr>
+                <td>Vendredi</td>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>
+                    <input type="checkbox">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div>
+            <button class="btn btn-success">
+                Sauvegarder
+            </button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
