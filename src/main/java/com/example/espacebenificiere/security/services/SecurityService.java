@@ -1,6 +1,5 @@
 package com.example.espacebenificiere.security.services;
 
-import com.example.espacebenificiere.security.entities.AppRole;
 import com.example.espacebenificiere.security.entities.AppUser;
 
 public interface SecurityService {

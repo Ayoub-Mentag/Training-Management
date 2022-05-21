@@ -1,6 +1,5 @@
 package com.example.espacebenificiere.security.services;
 
-import com.example.espacebenificiere.security.entities.AppRole;
 import com.example.espacebenificiere.security.entities.AppUser;
 import com.example.espacebenificiere.security.repositories.AppRoleRepository;
 import com.example.espacebenificiere.security.repositories.AppUserRepository;
@@ -10,7 +9,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.UUID;
 @Transactional //all the method are transactional
                // > at the end of executing the method he(spring)commits
                // > so the others
@@ -29,12 +27,12 @@ public class SecurityServiceImpl implements SecurityService {
 //            throw new RuntimeException("Password not match");//dans la pratique il faut créer customized exception
 //        }
 //        String encodedPassword = passwordEncoder.encode(password);
-//        AppUser appUser = new AppUser();
-//        appUser.setUserId(UUID.randomUUID().toString());//generate a random string
-//        appUser.setEmail(username);
-//        appUser.setPassword(encodedPassword);
-//        appUser.setActive(true);
-//        AppUser savedAppUser = appUserRepository.save(appUser);
+//        AppUser beneficiary = new AppUser();
+//        beneficiary.setUserId(UUID.randomUUID().toString());//generate a random string
+//        beneficiary.setEmail(username);
+//        beneficiary.setPassword(encodedPassword);
+//        beneficiary.setActive(true);
+//        AppUser savedAppUser = appUserRepository.save(beneficiary);
 //        return savedAppUser;
 //    }
 //
@@ -52,27 +50,27 @@ public class SecurityServiceImpl implements SecurityService {
 //
 //    @Override
 //    public void addRoleToUser(String email, String roleName) {
-//        AppUser appUser = appUserRepository.findAppUserByEmail(email);
-//        if (appUser == null) throw new RuntimeException("User with " + email + " does not exist!!");
+//        AppUser beneficiary = appUserRepository.findAppUserByEmail(email);
+//        if (beneficiary == null) throw new RuntimeException("User with " + email + " does not exist!!");
 //
 //        AppRole appRole = appRoleRepository.findByRoleName(roleName);
 //        if (appRole == null) throw new RuntimeException("Role with " + roleName + " does not exist!!");
 //
-//        appUser.getAppRoles().add(appRole);//?? why we didn't add save > appUserRepo.save(appUser);
+//        beneficiary.getAppRoles().add(appRole);//?? why we didn't add save > appUserRepo.save(beneficiary);
 
-//        appUserRepository.save(appUser);> it is not necessary since we add @Transactional
+//        appUserRepository.save(beneficiary);> it is not necessary since we add @Transactional
         //> update the field automatically;
 //    }
 
 //    @Override
 //    public void removeRoleFromUser(String username, String roleName) {
-//        AppUser appUser = appUserRepository.findAppUserByEmail(username);
-//        if (appUser == null) throw new RuntimeException("User with " + username + " does not exist!!");
+//        AppUser beneficiary = appUserRepository.findAppUserByEmail(username);
+//        if (beneficiary == null) throw new RuntimeException("User with " + username + " does not exist!!");
 //
 //        AppRole appRole = appRoleRepository.findByRoleName(roleName);
 //        if (appRole == null) throw new RuntimeException("Role with " + roleName + " does not exist!!");
 //
-//        appUser.getAppRoles().remove(appRole);//?? why we didn't add save > appUserRepo.save(appUser);
+//        beneficiary.getAppRoles().remove(appRole);//?? why we didn't add save > appUserRepo.save(beneficiary);
 //
 //    }
 
