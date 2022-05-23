@@ -1,13 +1,10 @@
 package com.example.espacebenificiere.security.entities;
 
-import com.example.espacebenificiere.security.repositories.ScheduleRepository;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
+import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,4 +20,6 @@ public class Beneficiary extends AppUser{
     private String cyE;
     private String dirP;
     private String fon;
+    @OneToMany(mappedBy="beneficiary")
+    private List<Choice> choices = new ArrayList<>();
 }

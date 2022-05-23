@@ -1,5 +1,8 @@
 package com.example.espacebenificiere;
 
+import com.example.espacebenificiere.security.entities.Group;
+import com.example.espacebenificiere.security.repositories.GroupRepository;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -565,9 +568,26 @@ public class EspaceBenificiereApplication {
 //        };
 //    }
 
-            @Bean
-            public PasswordEncoder passwordEncoder () {
+
+    @Bean
+    public PasswordEncoder passwordEncoder () {
                 return new BCryptPasswordEncoder();
             }
+
+//    @Bean
+//    public CommandLineRunner commandLineRunner(GroupRepository groupRepository){
+//        return args -> {
+//            groupRepository.save(new Group(null , "Lundi Matin" , -1));
+//            groupRepository.save(new Group(null , "Lundi Aprés Midi" , -1));
+//            groupRepository.save(new Group(null , "Mardi Matin" , -1));
+//            groupRepository.save(new Group(null , "Mardi Aprés Midi" , -1));
+//            groupRepository.save(new Group(null , "Mercredi Matin" , -1));
+//            groupRepository.save(new Group(null , "Mercredi Aprés Midi" , -1));
+//            groupRepository.save(new Group(null , "Jeudi Matin" , -1));
+//            groupRepository.save(new Group(null , "Jeudi Aprés Midi" , -1));
+//            groupRepository.save(new Group(null , "Vendredi Matin" , -1));
+//
+//        };
+//    }
         }
 

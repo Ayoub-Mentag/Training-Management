@@ -3,11 +3,12 @@ package com.example.espacebenificiere.web;
 import com.example.espacebenificiere.security.entities.AppRole;
 import com.example.espacebenificiere.security.entities.AppUser;
 import com.example.espacebenificiere.security.entities.Beneficiary;
-import com.example.espacebenificiere.security.entities.Schedule;
+
+import com.example.espacebenificiere.security.entities.Choice;
 import com.example.espacebenificiere.security.repositories.AppRoleRepository;
 import com.example.espacebenificiere.security.repositories.AppUserRepository;
 import com.example.espacebenificiere.security.repositories.BeneficiaryRepository;
-import com.example.espacebenificiere.security.repositories.ScheduleRepository;
+import com.example.espacebenificiere.security.repositories.ChoiceRepository;
 import com.example.espacebenificiere.security.services.SecurityService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
-import java.util.List;
+import java.util.*;
 
 
 @Controller
@@ -30,7 +31,7 @@ public class MyController {
     private AppRoleRepository appRoleRepository;
     private AppUserRepository appUserRepository;
     private PasswordEncoder passwordEncoder;
-    private ScheduleRepository scheduleRepository;
+    private ChoiceRepository choiceRepository;
     private BeneficiaryRepository beneficiaryRepository;
 
 
@@ -102,41 +103,78 @@ public class MyController {
     }
 
 
-    @GetMapping(path = "/user/choicesUser")
-    public String choices(Model model){
-        //todo: make a logic to not let the user choose 'Lundi' as a 1st and 2nd .. choice >
-        String[] days = {"Lundi" , "Mardi" , "Mercredi" , "Jeudi"};
-        model.addAttribute("days", days);
-        Schedule schedule = scheduleRepository.findById(getCurrentUser().getUserId()).orElse(null);
-        String[] chosenDays = {"" , "" ,"" ,""};
-        if (schedule != null){
-            chosenDays = new String[]{schedule.getC1(), schedule.getC2(), schedule.getC3(), schedule.getC4()};
-        }
-        model.addAttribute("chosenDays" , chosenDays);
-        return "choicesUser";
-    }
-
-    @PostMapping(path = "/user/saveChoices")
-    public String saveChoices(Model model ,
-                              @RequestParam(name = "c1" , defaultValue = "") String c1,
-                              @RequestParam(name = "c2" , defaultValue = "") String c2,
-                              @RequestParam(name = "c3" , defaultValue = "") String c3,
-                              @RequestParam(name = "c4" , defaultValue = "") String c4) {
-        model.addAttribute("c1", c1);
-        Long id = getCurrentUser().getUserId();
-        scheduleRepository.save(new Schedule(id, c1, c2, c3, c4));
-        return "/welcomePage";
-    }
-
-
-    //For ADMIN
-    @GetMapping(path = "/admin/choicesUsersAdmin")
-    public String choicesUsersAdmin(Model model ){
-        List<Beneficiary> beneficiaryList = beneficiaryRepository.findAll();
-        List<Schedule>  schedulesList = scheduleRepository.findAll();
-        model.addAttribute("scheduleList" , schedulesList);
-        model.addAttribute("beneficiaryList" , beneficiaryList);
-        return "choicesUsersAdmin";
-    }
-
+//    @GetMapping(path = "/user/choicesUser")
+//    public String choices(Model model){
+//        //todo: make a logic to not let the user choose 'Lundi' as a 1st and 2nd .. choice >
+//
+//        model.addAttribute("days", days);
+//
+//        List<Choice> choices = choiceRepository.findByBeneficiary(getCurrentUser().getUserId());
+//
+//
+//        model.addAttribute("chosenDays" , choices);
+//        return "choicesUser";
+//    }
+//
+//    @PostMapping(path = "/user/saveChoices")
+//    public String saveChoices(Model model ,
+//                              @RequestParam(name = "c1" , defaultValue = "") String c1,
+//                              @RequestParam(name = "c2" , defaultValue = "") String c2,
+//                              @RequestParam(name = "c3" , defaultValue = "") String c3,
+//                              @RequestParam(name = "c4" , defaultValue = "") String c4) {
+//        model.addAttribute("c1", c1);
+//        Long id = getCurrentUser().getUserId();
+//        scheduleRepository.save(new Schedule(id, c1, c2, c3, c4));
+//        return "/welcomePage";
+//    }
+//
+//
+//    //For ADMIN
+//    @GetMapping(path = "/admin/choicesUsersAdmin")
+//    public String choicesUsersAdmin(Model model ){
+//        List<Beneficiary> beneficiaryList = beneficiaryRepository.findAll();
+//        List<Schedule>  schedulesList = scheduleRepository.findAll();
+//        model.addAttribute("scheduleList" , schedulesList);
+//        model.addAttribute("beneficiaryList" , beneficiaryList);
+//        List<Long> gOfLundi = findBeneficiaries("Lundi");
+//        List<Long> gOfMardi = findBeneficiaries("Mardi");
+//        List<Long> gOfMercredi = findBeneficiaries("Mercredi");
+//        List<Long> gOfJeudi = findBeneficiaries("Jeudi");
+//
+//        System.out.println("Before");
+//        System.out.println(gOfLundi);
+//        System.out.println(gOfMardi);
+//        System.out.println(gOfMercredi);
+//        System.out.println(gOfJeudi);
+//
+//
+//        shuffleGroup(gOfLundi);
+//        shuffleGroup(gOfMardi);
+//        shuffleGroup(gOfMercredi);
+//        shuffleGroup(gOfJeudi);
+//
+//        System.out.println("After");
+//        System.out.println(gOfLundi);
+//        System.out.println(gOfMardi);
+//        System.out.println(gOfMercredi);
+//        System.out.println(gOfJeudi);
+//
+//        System.out.println("---------------");
+//
+//        System.out.println();
+//        return "choicesUsersAdmin";
+//    }
+//
+//    private void shuffleGroup(List<Long> group) {
+//        Collections.shuffle(group);
+//    }
+//
+//
+//    private List<Long> findBeneficiaries(String day) {
+//        List<Long> users_id = new ArrayList<>();
+//        for (Schedule s : scheduleRepository.findByC1(day)){
+//            users_id.add(s.getUser_id());
+//        }
+//        return users_id;
+//    }
 }
