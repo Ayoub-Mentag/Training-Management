@@ -18,37 +18,37 @@
     <div class="card-header">
         <form method="post" th:action="@{/user/saveChoices}">
             <div>
-                <label for="c1">Choix 1 : </label>
-                <select id="c1" name="c1">
-                    <option th:value="${chosenDays[0]}" th:text="${chosenDays[0]}"></option>
+                <label>Choix 1 : </label>
+                <select th:each="g , st: ${appGroups}" th:name="'c'+${st.index+1}">
                     <option value="" th:text="--"></option>
-                    <option th:each="day : ${days}" th:value="${day}" th:text="${day}"></option>
+                    <option th:each="group , status : ${appGroups}" th:text="${appGroups.get(status.index).getHalfDay()}" th:value="''+${status.index+1}" ></option>
                 </select>
             </div>
-            <div>
-                <label for="c2">Choix 2 : </label>
-                <select id="c2" name="c2">
-                    <option th:value="${chosenDays[1]}" th:text="${chosenDays[1]}"></option>
-                    <option value="" th:text="--"></option>
-                    <option th:each="day : ${days}" th:value="${day}" th:text="${day}"></option>
-                </select>
-            </div>
-            <div>
-                <label for="c3">Choix 3 : </label>
-                <select id="c3" name="c3">
-                    <option th:value="${chosenDays[2]}" th:text="${chosenDays[2]}"></option>
-                    <option value="" th:text="--"></option>
-                    <option th:each="day : ${days}" th:value="${day}" th:text="${day}"></option>
-                </select>
-            </div>
-            <div>
-                <label for="c4">Choix 4 : </label>
-                <select id="c4" name="c4">
-                    <option th:value="${chosenDays[3]}" th:text="${chosenDays[3]}"></option>
-                    <option value="" th:text="--"></option>
-                    <option th:each="day : ${days}" th:value="${day}" th:text="${day}"></option>
-                </select>
-            </div>
+
+<!--            <div>-->
+<!--                <label for="c2">Choix 2 : </label>-->
+<!--                <select id="c2" name="c2">-->
+<!--                    <option th:value="${chosenDays[1]}" th:text="${appGroups.get(1).getHalfDay()}"></option>-->
+<!--                    <option value="" th:text="&#45;&#45;"></option>-->
+<!--                    <option th:each="day : ${days}" th:value="${day}" th:text="${day}"></option>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <label for="c3">Choix 3 : </label>-->
+<!--                <select id="c3" name="c3">-->
+<!--                    <option th:value="${chosenDays[2]}" th:text="${appGroups.get(2).getHalfDay()}"></option>-->
+<!--                    <option value="" th:text="&#45;&#45;"></option>-->
+<!--                    <option th:each="day : ${days}" th:value="${day}" th:text="${day}"></option>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <label for="c4">Choix 4 : </label>-->
+<!--                <select id="c4" name="c4">-->
+<!--                    <option th:value="${chosenDays[3]}" th:text="${appGroups.get(3).getHalfDay()}"></option>-->
+<!--                    <option value="" th:text="&#45;&#45;"></option>-->
+<!--                    <option th:each="day : ${days}" th:value="${day}" th:text="${day}"></option>-->
+<!--                </select>-->
+<!--            </div>-->
             <div>
                 <button type="submit" >Envoyer</button>
             </div>

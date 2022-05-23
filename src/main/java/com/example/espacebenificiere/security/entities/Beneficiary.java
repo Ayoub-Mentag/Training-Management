@@ -21,5 +21,5 @@ public class Beneficiary extends AppUser{
     private String dirP;
     private String fon;
     @OneToMany(mappedBy="beneficiary")
-    private List<Choice> choices = new ArrayList<>();
+    private List<AppChoice> choices = new ArrayList<>();
 }

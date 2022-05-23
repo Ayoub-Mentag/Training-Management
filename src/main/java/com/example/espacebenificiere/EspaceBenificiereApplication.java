@@ -1,13 +1,23 @@
 package com.example.espacebenificiere;
 
-import com.example.espacebenificiere.security.entities.Group;
-import com.example.espacebenificiere.security.repositories.GroupRepository;
+import com.example.espacebenificiere.security.entities.Admin;
+import com.example.espacebenificiere.security.entities.AppChoice;
+import com.example.espacebenificiere.security.entities.AppGroup;
+import com.example.espacebenificiere.security.entities.Beneficiary;
+import com.example.espacebenificiere.security.repositories.AdminRepository;
+import com.example.espacebenificiere.security.repositories.AppChoiceRepository;
+import com.example.espacebenificiere.security.repositories.AppGroupRepository;
+import com.example.espacebenificiere.security.repositories.AppUserRepository;
+import com.example.espacebenificiere.web.MyController;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class EspaceBenificiereApplication {
@@ -17,8 +27,8 @@ public class EspaceBenificiereApplication {
     }
 
   //  @Bean
-   // public CommandLineRunner commandLineRunner(AppUserRepository appUserRepository , BeneficiaryController beneficiaryController) {
-        //return args -> {
+    public CommandLineRunner commandLineRunner(AppUserRepository appUserRepository , AdminRepository adminRepository , MyController myController , PasswordEncoder passwordEncoder) {
+//        return args -> {
 //            Beneficiary beneficiary = new Beneficiary();
 //            beneficiary.setEmail("oussama@gmail.com");
 //            beneficiary.setPassword(passwordEncoder.encode("123456"));
@@ -33,8 +43,8 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
-
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
+//
 //            beneficiary = new Beneficiary();
 //            beneficiary.setEmail("imad@gmail.com");
 //            beneficiary.setPassword(passwordEncoder.encode("123456"));
@@ -49,7 +59,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //            beneficiary = new Beneficiary();
 //            beneficiary.setEmail("mehdi@gmail.com");
@@ -65,7 +75,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //            beneficiary = new Beneficiary();
 //            beneficiary.setEmail("youssef@gmail.com");
@@ -81,7 +91,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //            beneficiary = new Beneficiary();
 //            beneficiary.setEmail("anass@gmail.com");
@@ -97,7 +107,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //            beneficiary = new Beneficiary();
 //            beneficiary.setEmail("badr@gmail.com");
@@ -113,7 +123,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //            beneficiary = new Beneficiary();
 //            beneficiary.setEmail("zaim@gmail.com");
@@ -129,7 +139,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //            beneficiary = new Beneficiary();
 //            beneficiary.setEmail("mohssin@gmail.com");
@@ -145,7 +155,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //
 //            beneficiary = new Beneficiary();
@@ -162,7 +172,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //
 //            beneficiary = new Beneficiary();
@@ -179,7 +189,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //
 //            beneficiary = new Beneficiary();
@@ -196,7 +206,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //
 //            beneficiary = new Beneficiary();
@@ -213,7 +223,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //
 //            beneficiary = new Beneficiary();
@@ -230,7 +240,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //
 //            beneficiary = new Beneficiary();
@@ -247,7 +257,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //
 //            beneficiary = new Beneficiary();
@@ -264,7 +274,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //
 //            beneficiary = new Beneficiary();
@@ -281,7 +291,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //
 //
@@ -299,7 +309,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //
 //            beneficiary = new Beneficiary();
@@ -316,7 +326,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //
 //            beneficiary = new Beneficiary();
@@ -333,7 +343,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //
 //            beneficiary = new Beneficiary();
@@ -350,7 +360,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //
 //            beneficiary = new Beneficiary();
@@ -367,7 +377,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //
 //            beneficiary = new Beneficiary();
@@ -384,7 +394,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //
 //            beneficiary = new Beneficiary();
@@ -401,7 +411,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //
 //            beneficiary = new Beneficiary();
@@ -418,7 +428,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //
 //            beneficiary = new Beneficiary();
@@ -435,7 +445,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //
 //            beneficiary = new Beneficiary();
@@ -452,7 +462,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //
 //            beneficiary = new Beneficiary();
@@ -469,7 +479,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //
 //            beneficiary = new Beneficiary();
@@ -486,7 +496,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //
 //            beneficiary = new Beneficiary();
@@ -503,7 +513,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //
 //            beneficiary = new Beneficiary();
@@ -520,7 +530,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //
 //            beneficiary = new Beneficiary();
@@ -537,7 +547,7 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //
 //            beneficiary = new Beneficiary();
@@ -554,19 +564,19 @@ public class EspaceBenificiereApplication {
 //            beneficiary.setFon("A");
 //            beneficiary.setTel("0612345678");
 //            appUserRepository.save(beneficiary);
-//beneficiaryController.addRoleToUser("USER" , beneficiary.getEmail());
+//myController.addRoleToUser("USER" , beneficiary.getEmail());
 //
 //        };
-//            Admin admin = new Admin();
-//            admin.setEmail("admin");
-//            admin.setPassword(passwordEncoder.encode("123456"));
-//            admin.setActive(true);
-//            adminRepository.save(admin);
-//            beneficiaryController.addRoleToUser("ADMIN" , "admin");
-//            beneficiaryController.addRoleToUser("USER" , "admin");
-//
-//        };
-//    }
+
+        return args -> {
+            Admin admin = new Admin();
+            admin.setEmail("admin");
+            admin.setPassword(passwordEncoder.encode("123456"));
+            admin.setActive(true);
+            adminRepository.save(admin);
+            myController.addRoleToUser("ADMIN" , "admin");
+        };
+    }
 
 
     @Bean
@@ -574,20 +584,28 @@ public class EspaceBenificiereApplication {
                 return new BCryptPasswordEncoder();
             }
 
-//    @Bean
-//    public CommandLineRunner commandLineRunner(GroupRepository groupRepository){
-//        return args -> {
-//            groupRepository.save(new Group(null , "Lundi Matin" , -1));
-//            groupRepository.save(new Group(null , "Lundi Aprés Midi" , -1));
-//            groupRepository.save(new Group(null , "Mardi Matin" , -1));
-//            groupRepository.save(new Group(null , "Mardi Aprés Midi" , -1));
-//            groupRepository.save(new Group(null , "Mercredi Matin" , -1));
-//            groupRepository.save(new Group(null , "Mercredi Aprés Midi" , -1));
-//            groupRepository.save(new Group(null , "Jeudi Matin" , -1));
-//            groupRepository.save(new Group(null , "Jeudi Aprés Midi" , -1));
-//            groupRepository.save(new Group(null , "Vendredi Matin" , -1));
-//
-//        };
-//    }
+  //  @Bean
+    public CommandLineRunner commandLineRunner(AppGroupRepository groupRepository){
+        return args -> {
+            groupRepository.save(new AppGroup(null , "Lundi Matin" , -1));
+            groupRepository.save(new AppGroup(null , "Lundi Aprés Midi" , -1));
+            groupRepository.save(new AppGroup(null , "Mardi Matin" , -1));
+            groupRepository.save(new AppGroup(null , "Mardi Aprés Midi" , -1));
+            groupRepository.save(new AppGroup(null , "Mercredi Matin" , -1));
+            groupRepository.save(new AppGroup(null , "Mercredi Aprés Midi" , -1));
+            groupRepository.save(new AppGroup(null , "Jeudi Matin" , -1));
+            groupRepository.save(new AppGroup(null , "Jeudi Aprés Midi" , -1));
+            groupRepository.save(new AppGroup(null , "Vendredi Matin" , -1));
+
+        };
+    }
+
+ //   @Bean
+    public CommandLineRunner printDays(AppGroupRepository appGroupRepository){
+        return args -> {
+            List<AppGroup> appGroups = appGroupRepository.findAll();
+            System.out.println(appGroups);
+        };
+    }
         }
 

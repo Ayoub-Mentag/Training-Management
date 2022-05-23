@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Choice {
+public class AppChoice {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long choiceId;
     @ManyToOne
@@ -18,8 +18,8 @@ public class Choice {
     private Beneficiary beneficiary;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "group_id", referencedColumnName = "groupId")
-    private Group group;
-    //1st choice or second choice..
+    private AppGroup group;
+    //1st choice or second choice ...
     private int priority;
 
 }

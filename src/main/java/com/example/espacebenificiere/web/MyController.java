@@ -1,16 +1,11 @@
 package com.example.espacebenificiere.web;
 
-import com.example.espacebenificiere.security.entities.AppRole;
-import com.example.espacebenificiere.security.entities.AppUser;
-import com.example.espacebenificiere.security.entities.Beneficiary;
+import com.example.espacebenificiere.security.entities.*;
 
-import com.example.espacebenificiere.security.entities.Choice;
-import com.example.espacebenificiere.security.repositories.AppRoleRepository;
-import com.example.espacebenificiere.security.repositories.AppUserRepository;
-import com.example.espacebenificiere.security.repositories.BeneficiaryRepository;
-import com.example.espacebenificiere.security.repositories.ChoiceRepository;
+import com.example.espacebenificiere.security.repositories.*;
 import com.example.espacebenificiere.security.services.SecurityService;
 import lombok.AllArgsConstructor;
+import org.apache.coyote.http11.upgrade.UpgradeProcessorInternal;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,7 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -29,9 +25,10 @@ import java.util.*;
 public class MyController {
     private SecurityService securityService;
     private AppRoleRepository appRoleRepository;
+    private AppGroupRepository appGroupRepository;
     private AppUserRepository appUserRepository;
     private PasswordEncoder passwordEncoder;
-    private ChoiceRepository choiceRepository;
+    private AppChoiceRepository appChoiceRepository;
     private BeneficiaryRepository beneficiaryRepository;
 
 
@@ -103,30 +100,64 @@ public class MyController {
     }
 
 
-//    @GetMapping(path = "/user/choicesUser")
-//    public String choices(Model model){
-//        //todo: make a logic to not let the user choose 'Lundi' as a 1st and 2nd .. choice >
+    @GetMapping(path = "/user/choicesUser")
+    public String choices(Model model){
+        //todo: make a logic to not let the user choose 'Lundi' as a 1st and 2nd .. choice >
+        List<AppGroup> appGroups = appGroupRepository.findAll();
+        model.addAttribute("appGroups", appGroups);
+        return "choicesUser";
+    }
+
+    @PostMapping(path = "/user/saveChoices")
+    public String saveChoices(Model model ,
+                              @RequestParam(required=false, name = "c1" , value = "") String c1,
+                              @RequestParam(required=false,name = "c2" , value = "") String c2,
+                              @RequestParam(required=false,name = "c3" , value = "") String c3,
+                              @RequestParam(required=false,name = "c4" , value = "") String c4,
+                              @RequestParam(required=false,name = "c5" , value = "") String c5,
+                              @RequestParam(required=false,name = "c6" , value = "") String c6,
+                              @RequestParam(required=false,name = "c7" , value = "") String c7,
+                              @RequestParam(required=false,name = "c8" , value = "") String c8,
+                              @RequestParam(required=false,name = "c9" , value = "") String c9) {
+
+
+        System.out.println(c1);
+        System.out.println(c2);
+        System.out.println(c3);
+        System.out.println(c4);
+        System.out.println(c5);
+        System.out.println(c6);
+        System.out.println(c7);
+        System.out.println(c8);
+        System.out.println(c9);
+
+        //        ArrayList<String> choices = new ArrayList<>();
+//        choices.add(c1);
+//        choices.add(c2);
+//        choices.add(c3);
+//        choices.add(c4);
+//        choices.add(c5);
+//        choices.add(c6);
+//        choices.add(c7);
+//        choices.add(c8);
+//        choices.add(c9);
 //
-//        model.addAttribute("days", days);
-//
-//        List<Choice> choices = choiceRepository.findByBeneficiary(getCurrentUser().getUserId());
-//
-//
-//        model.addAttribute("chosenDays" , choices);
-//        return "choicesUser";
-//    }
-//
-//    @PostMapping(path = "/user/saveChoices")
-//    public String saveChoices(Model model ,
-//                              @RequestParam(name = "c1" , defaultValue = "") String c1,
-//                              @RequestParam(name = "c2" , defaultValue = "") String c2,
-//                              @RequestParam(name = "c3" , defaultValue = "") String c3,
-//                              @RequestParam(name = "c4" , defaultValue = "") String c4) {
-//        model.addAttribute("c1", c1);
-//        Long id = getCurrentUser().getUserId();
-//        scheduleRepository.save(new Schedule(id, c1, c2, c3, c4));
-//        return "/welcomePage";
-//    }
+//        model.addAttribute("choices" , choices);
+//        int priority = 1;
+//        for (String c : choices){
+//            if (!c.equals("")){
+//                AppChoice appChoice = new AppChoice();
+//                appChoice.setPriority(priority);
+//                appChoice.setBeneficiary((Beneficiary) getCurrentUser());
+//                appChoiceRepository.save(appChoice);
+//                priority++;
+//            }
+//        }
+
+        return "/welcomePage";
+    }
+
+
 //
 //
 //    //For ADMIN
